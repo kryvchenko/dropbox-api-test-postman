@@ -17,11 +17,11 @@ The platfom chosen to implement this automated testing is [Postman](https://www.
 Since we are worked with static collection which was exported in sertain period of time and by the Dropbox polices access token only valid for the 4 hours, before running the test new access token should be generated:
 
 - open the terminal
-- run this command `curl https://api.dropbox.com/oauth2/token -d grant_type=refresh_token -d refresh_token=<*** REFRESH TOKEN ***> -u qwn2tzzgruh1amt:aghea2e8ir6dtpt`
+- run command `curl https://api.dropbox.com/oauth2/token -d grant_type=refresh_token -d refresh_token=<***  ADD REFRESH TOKEN HERE ***> -u <*** ADD base64 code HERE ***>`
 - from the response copy value of the access token
 - open postman_environment.json file find the key `BEARERTOKEN` and paste copied access token to it value
 
-![alt example](./assets/token.png)
+<!-- ![alt example](./assets/token.png) -->
 
 ## Running test
 
