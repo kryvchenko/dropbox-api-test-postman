@@ -1,0 +1,63 @@
+{
+	"id": "3ff05498-a249-4672-9f86-d470979c4b17",
+	"name": "QA dropbox env",
+	"values": [
+		{
+			"key": "url",
+			"value": "https://api.dropboxapi.com/2/",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "fileId",
+			"value": "id:iSBekdwkWxoAAAAAAAAANQ",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "filePath",
+			"value": "/Homework/Intro.txt",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "fileName",
+			"value": "Intro.txt",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "uploadUrl",
+			"value": "https://content.dropboxapi.com/2/files/upload",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "clientId",
+			"value": "qwn2tzzgruh1amt",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "clientSecret",
+			"value": "aghea2e8ir6dtpt",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "BEARERTOKEN",
+			"value": "sl.BQYsw0xqtKIEnl6KkkZSCUkSmZVnSVYjtdR9saAg9tdJ2tLXPgVenQPmxQCI3IP1gCd3lInXvE_jZ01NrpqY9YMX_lEJmmUuPzdzGo3jZoPwLuiU8pxlwvCswDewiYzIuIY1b0_8fJCu",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "OAuth_Token",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2022-10-04T07:49:34.764Z",
+	"_postman_exported_using": "Postman/9.31.18-220930-1446"
+}
