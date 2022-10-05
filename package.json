@@ -4,7 +4,7 @@
     "newman-reporter-htmlextra": "^1.22.11"
   },
   "scripts": {
-    "test": "newman run postman_collection.json -e postman_environment.json",
-    "report": "newman run postman_collection.json -e postman_environment.json -r htmlextra"
+    "test": "newman run collection.json -e env.json",
+    "report": "newman run collection.json -e env.json -r htmlextra"
   }
 }
