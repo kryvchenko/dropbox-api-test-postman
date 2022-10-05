@@ -20,8 +20,7 @@ Since we are working with static collection which was exported in certain period
 - run command `curl https://api.dropbox.com/oauth2/token -d grant_type=refresh_token -d refresh_token=<ADD REFRESH TOKEN HERE FROM assets/data.js> -u <ADD base64 code HERE from assets/data.js>`
 - from the response copy value of the access token
 - open the postman_environment.json file find the key `BEARERTOKEN` and paste copied access token to its value
-
-[![Watch the video]](./assets/instruction.mp4)
+- in case of any issues, download and watch video instruction from the assets folder
 
 ## Running test
 
