@@ -21,10 +21,12 @@ Since we are working with static collection which was exported in certain period
 - from the response copy value of the access token
 - open the postman_environment.json file find the key `BEARERTOKEN` and paste copied access token to its value
 
+[![Watch the video]](./assets/instruction.mp4)
+
 ## Running test
 
 - navigate to the project directory 
 - open terminal
 - to run the test: `npm run test`
-- to run the test, generate a report: `npm run test & npm run report` 
-- to open the report navigate to the newly created newman folder and open the HTML file in your browser
+- to run the test, generate a report: `npm run report` 
+- to open the report navigate to the newly created newman folder(same directory) and open the HTML file in your browser
