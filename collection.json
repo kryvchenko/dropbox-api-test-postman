@@ -1,95 +1,11 @@
 {
 	"info": {
-		"_postman_id": "c3a9ca84-b5cc-48c6-82aa-73e2c093ed3a",
-		"name": "Dropbox API",
+		"_postman_id": "ee4c4d5a-68bb-4f15-b9e2-12da0894434d",
+		"name": "Dropbox API Updated",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "23524391"
 	},
 	"item": [
-		{
-			"name": "Get access token",
-			"item": [
-				{
-					"name": "Get the access token",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"const body = pm.response.json();",
-									"pm.collectionVariables.set(\"BEARERTOKEN\", body.access_token);",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "aghea2e8ir6dtpt",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "qwn2tzzgruh1amt",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "grant_type",
-									"value": "refresh_token",
-									"type": "text"
-								},
-								{
-									"key": "refresh_token",
-									"value": "eLtsUaY8RPIAAAAAAAAAAaDBNcGbIOuXYKGP9Hhn6HE7GCESe9SKFWs8NI_ToCum",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "https://api.dropboxapi.com/oauth2/token",
-							"protocol": "https",
-							"host": [
-								"api",
-								"dropboxapi",
-								"com"
-							],
-							"path": [
-								"oauth2",
-								"token"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
 		{
 			"name": "Basic endpoint test",
 			"item": [
@@ -156,7 +72,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"path\": \"/Homework/Intro.txt\", \n    \"mode\": \"add\", \n    \"autorename\": true, \n    \"mute\": false, \n    \"strict_conflict\": false\n}",
+									"raw": "{{addUploadBody}}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -172,13 +88,33 @@
 							},
 							"response": []
 						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
 					]
 				},
 				{
 					"name": "GetFileMetadata",
 					"item": [
 						{
-							"name": "Getmetadata",
+							"name": "GetMetaData",
 							"event": [
 								{
 									"listen": "test",
@@ -200,6 +136,15 @@
 											"    const jsonData = pm.response.json();",
 											"    pm.expect(jsonData.id).to.have.lengthOf(25);",
 											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
 											""
 										],
 										"type": "text/javascript"
@@ -229,7 +174,12 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"file\": \"{{fileId}}\", \n    \"actions\": []\n}"
+									"raw": "{{addMetaBodyText}}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
 								},
 								"url": {
 									"raw": "{{url}}sharing/get_file_metadata",
@@ -345,7 +295,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"path\":  \"{{filePath}}\"\n}",
+									"raw": "{{addDeleteBodyText}}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -364,7 +314,47 @@
 							},
 							"response": []
 						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
 					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		},
@@ -385,7 +375,8 @@
 									"pm.test(\"Verify that data size is 0\", function () {",
 									"    let jsonData = pm.response.json();",
 									"    pm.expect(jsonData.size).to.eql(0);",
-									"});"
+									"});",
+									"postman.setNextRequest('Getmetadata Negative')"
 								],
 								"type": "text/javascript"
 							}
@@ -459,7 +450,9 @@
 								"exec": [
 									"pm.test(\"Verify status code should be 409\", function () {",
 									"    pm.response.to.have.status(409);",
-									"});"
+									"});",
+									"",
+									"postman.setNextRequest('Delete Negative')"
 								],
 								"type": "text/javascript"
 							}
@@ -524,6 +517,7 @@
 									"    let jsonData = pm.response.json();",
 									"    pm.expect(jsonData.error).to.exist;",
 									"});",
+									"",
 									""
 								],
 								"type": "text/javascript"
@@ -648,6 +642,106 @@
 			"script": {
 				"type": "text/javascript",
 				"exec": [
+					"class Main {",
+					"",
+					"   getAccessToken() {",
+					"        pm.sendRequest(",
+					"            {",
+					"                url: pm.environment.get(\"tokenUrl\"),",
+					"                method: \"POST\",",
+					"                header: {",
+					"                    \"Content-Type\": \"Content-Type: application/x-www-form-urlencoded\",",
+					"                },",
+					"                body: {",
+					"                    mode: \"urlencoded\",",
+					"                    urlencoded: [",
+					"                        {",
+					"                            key: \"client_id\",",
+					"                            value: pm.environment.get(\"clientId\"),",
+					"                            disabled: false,",
+					"                        },",
+					"                        {",
+					"                            key: \"client_secret\",",
+					"                            value: pm.environment.get(\"clientSecret\"),",
+					"                            disabled: false,",
+					"                        },",
+					"                        {",
+					"                            key: \"refresh_token\",",
+					"                            value: pm.environment.get(\"refreshToken\"),",
+					"                            disabled: false,",
+					"                        },",
+					"                        { key: \"grant_type\", value: \"refresh_token\", disabled: false },",
+					"                        ",
+					"                    ],",
+					"                },",
+					"            },",
+					"             function (err, res) {",
+					"             pm.collectionVariables.set(\"BEARERTOKEN\", res.json().access_token);",
+					"            }",
+					"        );",
+					"",
+					"    }",
+					"}",
+					"",
+					"class Body extends Main {",
+					" ",
+					"    setBodyText() {",
+					"         let body = {",
+					"            path: \"/Homework/Intro.txt\",",
+					"            mode: \"add\",",
+					"            autorename: true,",
+					"            mute: false,",
+					"            strict_conflict: false",
+					"        }",
+					"        return pm.environment.set(\"addUploadBody\", JSON.stringify(body));",
+					"    }",
+					"",
+					"    setMetaDataBodyText() {",
+					"        let body = {",
+					"               file: \"{{fileId}}\",",
+					"               actions: []",
+					"         }",
+					"         return pm.environment.set(\"addMetaBodyText\", JSON.stringify(body));",
+					"    }",
+					"",
+					"    setDeleteBodyText() {",
+					"        let body = {",
+					"            path: \"{{filePath}}\"",
+					"       }",
+					"        return pm.environment.set(\"addDeleteBodyText\", JSON.stringify(body));",
+					"    }",
+					"}",
+					"",
+					"const newMain = new Main();",
+					"newMain.getAccessToken();",
+					"const newBody = new Body();",
+					"newBody.setBodyText();",
+					"newBody.setMetaDataBodyText();",
+					"newBody.setDeleteBodyText();",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
 					""
 				]
 			}
@@ -660,6 +754,7 @@
 					"pm.test(\"Response time is less than 5000ms\", function () {",
 					"    pm.expect(pm.response.responseTime).to.be.below(5000);",
 					"});",
+					"",
 					""
 				]
 			}
@@ -669,16 +764,6 @@
 		{
 			"key": "BEARERTOKEN",
 			"value": ""
-		},
-		{
-			"key": "clientId",
-			"value": "",
-			"type": "string"
-		},
-		{
-			"key": "clientSecret",
-			"value": "",
-			"type": "string"
 		}
 	]
 }
